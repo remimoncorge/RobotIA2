@@ -122,11 +122,10 @@ public class RobotIA {
 			
 		}
 		
-		for(int i =0; i<10; i++) {
-			r.demiTour();
-			Delay.msDelay(500);
-		}
 		
+		o.depart(r, p);
+		p.fermetureInitiale();
+
 			
 	
 	

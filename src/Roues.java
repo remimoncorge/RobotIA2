@@ -38,34 +38,23 @@ public class Roues {
 	}
 	
 	
-	public void avance(CapteurToucher toucher, CapteurDistance distance) {// CapteurLumiere lumiere) 
-		
-		float distanceInitiale = distance.getDistance();
-		float distanceActuelle = 0;
-		
-		while (distanceActuelle<=distanceInitiale && toucher.isTouche()==false && Button.ENTER.isUp()){/*^ lumiere.determinerCouleur().equals("white") == false) */
-			
-			distanceActuelle=distanceInitiale;
-			distanceInitiale = distance.getDistance();
-			pilote.forward();
-		}
-		derniereDistance = distanceActuelle;
+	public void avance() {// CapteurLumiere lumiere) 
+		pilote.setLinearAcceleration(100);
+		pilote.setLinearSpeed(200);
+		pilote.forward();
 	}
 	
 	public void recule() {
-		//tant qu'on dit de reculer
-		chassis.setLinearSpeed(200);
-		chassis.setLinearAcceleration(100);
-		chassis.travel(-500000);
-		chassis.waitComplete();
+		pilote.setLinearAcceleration(100);
+		pilote.setLinearSpeed(200);
+		pilote.backward();
 		}		
 	
 	//peut-etre juste faire genre une m�thode qui fait tourner
-	public void tourne(int angle) {
-		chassis.setAngularAcceleration(100);
-		chassis.setAngularSpeed(200);
-		chassis.rotate(angle);
-		chassis.waitComplete();
+	public void tourne(double angle) {
+		pilote.setAngularAcceleration(100);
+		pilote.setAngularSpeed(200);
+		pilote.rotate(angle);
 		orientation+=angle;
 	}
 	
@@ -76,6 +65,8 @@ public class Roues {
 		pilote.rotate(92);
 		orientation += 92;
 	}
+	
+
 	
 	
 }

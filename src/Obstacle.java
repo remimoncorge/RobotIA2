@@ -15,11 +15,10 @@ public class Obstacle {
 	public void isPresent(float distanceInitiale, CapteurDistance distance, CapteurToucher toucher, Roues r, Pinces p) {
 		float d = 0;
 		d = distanceInitiale;
-		
 		r.tourne(15);
 		Delay.msDelay(500);
 		if(distance.getDistance()<r.getDerniereDistance()) {
-			this.attrape(toucher, r, p, distance);
+			this.attrape(toucher, r, p);
 		}
 			else
 		
@@ -28,22 +27,23 @@ public class Obstacle {
 				
 				if(distance.getDistance()<r.getDerniereDistance()) {
 					
-		            this.attrape(toucher, r, p, distance);	
+		            this.attrape(toucher, r, p);	
 					
 				}
 		
 					else {
 						r.tourne(15);
 						Delay.msDelay(500);
-						this.attrape(toucher, r, p, distance);
+						this.attrape(toucher, r, p);
 						}
 		
 	}
 	
 		
-	public void attrape(CapteurToucher toucher, Roues r, Pinces p, CapteurDistance distance) {
+	public void attrape(CapteurToucher toucher, Roues r, Pinces p) {
+		p.relachePalet();
 		
-		r.avance();
+		r.pilote.travel(10);
 		
 		p.capturerPalet();
 		
@@ -67,18 +67,22 @@ public class Obstacle {
 	
 	
 	
-	/*public void depart(Roues r, Pinces p) {
+	public void depart(Roues r, Pinces p) {
 		p.ouvertureInitiale();
-		r.avance(80, 1800); 
+		r.pilote.travel(280); 
 		p.capturerPalet();
-		r.tourUnCranDroite();
-		r.avance(100, 2800);
-		r.tourUnCranGauche();
-		r.avance(100, 300);
-		Delay.msDelay(1000);
+		r.tourne(15);
+		r.pilote.travel(300);
+		r.tourne(-15);
+		r.pilote.travel(700);
 		p.relachePalet();
-		
-	}*/
+		r.pilote.travel(-100);
+		r.demiTour();
+		r.pilote.travel(100);
+		p.capturerPalet();
+		r.demiTour();
+		r.pilote.travel(200);
+	}
 	
 	
 	
