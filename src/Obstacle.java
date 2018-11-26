@@ -62,7 +62,6 @@ public class Obstacle {
 			r.avance();
 		}
 		
-		
 	}
 	
 	
@@ -76,12 +75,12 @@ public class Obstacle {
 		r.tourne(-15);
 		r.pilote.travel(700);
 		p.relachePalet();
-		r.pilote.travel(-100);
+		/*r.pilote.travel(-100);
 		r.demiTour();
 		r.pilote.travel(100);
 		p.capturerPalet();
 		r.demiTour();
-		r.pilote.travel(200);
+		r.pilote.travel(200);*/
 	}
 	
 	

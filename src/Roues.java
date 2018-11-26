@@ -3,15 +3,17 @@ import lejos.hardware.port.MotorPort;
 import lejos.utility.Delay;
 import lejos.robotics.RegulatedMotor;
 import lejos.robotics.chassis.*;
+import lejos.robotics.navigation.Move;
+import lejos.robotics.navigation.MoveListener;
 import lejos.robotics.navigation.MovePilot;
+import lejos.robotics.navigation.MoveProvider;
 import lejos.hardware.Button;
 import lejos.hardware.motor.*;
 
-public class Roues {
+public class Roues implements MoveListener{
 	
 	private float derniereDistance;
-	private int orientation; // restrict to 1 and 0
-	private boolean active;
+	private int orientation;
 	EV3MediumRegulatedMotor roueG = new EV3MediumRegulatedMotor(MotorPort.A);
 	EV3MediumRegulatedMotor roueD = new EV3MediumRegulatedMotor(MotorPort.C);
 	Wheel leftWheel = WheeledChassis.modelWheel(roueG, 56).offset(60).gearRatio(2);
@@ -66,6 +68,23 @@ public class Roues {
 		orientation += 92;
 	}
 	
+	public void retour() {
+		MoveListener listener = 
+		pilote.addMoveListener(listener);
+		
+	}
+
+	@Override
+	public void moveStarted(Move event, MoveProvider mp) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void moveStopped(Move event, MoveProvider mp) {
+		// TODO Auto-generated method stub
+		
+	}
 
 	
 	
