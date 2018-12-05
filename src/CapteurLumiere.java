@@ -25,10 +25,10 @@ public class CapteurLumiere {
 	SampleProvider average;	
 	ArrayList<Float> colorValues = new ArrayList<Float>();
 	
-	public CapteurLumiere() {		
-		average = new MeanFilter(colorSensor.getRGBMode(), 1);	
+	public CapteurLumiere() {					
 		port = LocalEV3.get().getPort("S3");
 		colorSensor = new EV3ColorSensor(port);
+		average = new MeanFilter(colorSensor.getRGBMode(), 1);
 		
 		blue = new float[average.sampleSize()];
 		red = new float[average.sampleSize()];

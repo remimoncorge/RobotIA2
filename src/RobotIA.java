@@ -112,19 +112,24 @@ public class RobotIA {
 		Roues r = new Roues();
 		Battery b = new Battery();
 		CapteurToucher toucher = new CapteurToucher();
-		//CapteurLumiere lumiere = new CapteurLumiere();
-		
+		CapteurLumiere lumiere = new CapteurLumiere();
+
 		
 		if (b.getVoltage() < 4 ) {
 			System.out.println(" Chargez la batterie !! ");
 			Delay.msDelay(5000);
 			System.exit(0);
-			
 		}
-		
-		
-		o.depart(r, p);
-		p.fermetureInitiale();
+		float d=distance.getDistance();
+		for (int i=0;i<10;i++) {
+			if(Button.ESCAPE.isDown()==true)
+				System.exit(0);
+			r.demiTour();
+			Delay.msDelay(3000);
+		}
+	
+		//while(distance.getDistance()>50)
+		//	r.suitLigne(lumiere, distance);
 
 			
 	

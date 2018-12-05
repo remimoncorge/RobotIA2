@@ -26,11 +26,14 @@ public class Mouvement implements MoveListener{
 		float angle = event.getAngleTurned();
 		float travelspeed = event.getTravelSpeed();
 		float rotateSpeed = event.getRotateSpeed();
+		boolean isMoving = event.isMoving();
 		
 	    List<Object> listeMouvement = new ArrayList<Object>();
-
-		
-		
+	    
+	    Move m1 = new Move(distance, angle, isMoving);
+	    listeMouvement.add(m1);
+	    
+	   
 	}
 
 }

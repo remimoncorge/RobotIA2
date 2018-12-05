@@ -41,37 +41,54 @@ public class Roues implements MoveListener{
 	
 	
 	public void avance() {// CapteurLumiere lumiere) 
-		pilote.setLinearAcceleration(100);
-		pilote.setLinearSpeed(200);
-		pilote.forward();
+		chassis.setAcceleration(100, 10);
+		chassis.setLinearSpeed(200);
+		chassis.travel(200);
 	}
 	
 	public void recule() {
-		pilote.setLinearAcceleration(100);
-		pilote.setLinearSpeed(200);
-		pilote.backward();
+		chassis.setAcceleration(100, 10);
+		chassis.setLinearSpeed(200);
+		chassis.travel(-200);
 		}		
 	
 	//peut-etre juste faire genre une m�thode qui fait tourner
 	public void tourne(double angle) {
-		pilote.setAngularAcceleration(100);
-		pilote.setAngularSpeed(200);
-		pilote.rotate(angle);
+		chassis.setAcceleration(100, 150);
+		chassis.setAngularSpeed(250);
+		chassis.rotate(angle);
 		orientation+=angle;
 	}
 	
 	//on verra plus tard pour la direction
 	public void demiTour() {
-		pilote.setAngularAcceleration(100);
-		pilote.setAngularSpeed(200);
-		pilote.rotate(92);
-		orientation += 92;
+		tourne(92);
+		
 	}
 	
 	public void retour() {
-		MoveListener listener = 
-		pilote.addMoveListener(listener);
+		MoveListener listener;
 		
+	}
+	
+	public void suitLigne(CapteurLumiere lumiere, CapteurDistance distance) {
+		while (distance.getDistance()>25) {
+			while (lumiere.determinerCouleur().equals("grey")==false) {
+				this.avance();
+			}
+			if (lumiere.determinerCouleur().equals("grey")==true) {
+				pilote.rotate(10);
+				if (lumiere.determinerCouleur().equals("grey")==false)
+					this.suitLigne(lumiere, distance);
+				else {
+					pilote.rotate(-20);
+				    if(lumiere.determinerCouleur().equals("grey")==false)
+					    this.suitLigne(lumiere, distance);
+				}
+			}
+		}
+			
+	
 	}
 
 	@Override
