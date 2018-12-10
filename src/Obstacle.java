@@ -7,8 +7,8 @@ public class Obstacle {
 		}
 	
 	public void isPresent(float distanceInitiale, CapteurDistance distance, CapteurToucher toucher, Roues r, Pinces p) {
-		float d = 0;
-		d = distanceInitiale;
+//		float d = 0;
+//		d = distanceInitiale;
 		while (distance.getDistance()<distanceInitiale+0.05 && distance.getDistance()>0.25) {
 			distanceInitiale = distance.getDistance();
 			r.avance();
@@ -27,6 +27,32 @@ public class Obstacle {
 				this.attrape(toucher, r, p);
 				}
 		
+	}
+	
+	public void recherche(float distanceInitiale, CapteurDistance cd, Roues r, Pinces p, CapteurToucher t) {
+		float nearest = 0.40f;
+		int angleOfNearest = 0;
+		int angle = 10;				
+		while (angle < 180) {
+			//maybe remove distanceInitiale
+			if ((cd.getDistance() < nearest) && (cd.getDistance() > distanceInitiale + 0.05) ) {
+				nearest = cd.getDistance();
+				angleOfNearest = angle;
+			}
+			r.tourne(angle);
+			angle+=10;
+		}
+		//if nearest distance different => something is found
+		if (nearest != 0.40f) {
+			//turn back to nearest obstacle found
+			r.tourne(-(180 - angleOfNearest));
+			//this.attrape(t, r, p);
+			isPresent(distanceInitiale, cd, t, r, p);
+		} else { //nearest distance is the same => nothing is found
+			//maybe proceed differently to move forward
+			r.avance();
+			recherche(distanceInitiale, cd, r, p, t);
+		}
 	}
 	
 		
