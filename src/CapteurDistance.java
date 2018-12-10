@@ -67,16 +67,4 @@ public class CapteurDistance {
 		return somme/(float)tab.length;
 	}
 	
-	public void enable()
-	{
-		sensor.enable();
-	}
-	
-	/**
-	 * Disable UltraSonic sensor.
-	 */
-	public void disable()
-	{
-		sensor.disable();
-	}
 }

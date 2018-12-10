@@ -120,18 +120,15 @@ public class RobotIA {
 			Delay.msDelay(5000);
 			System.exit(0);
 		}
-		float d=distance.getDistance();
-		for (int i=0;i<10;i++) {
-			if(Button.ESCAPE.isDown()==true)
-				System.exit(0);
-			r.demiTour();
-			Delay.msDelay(3000);
-		}
+		
+		
+		p.ouvrir(80, 0, 400);
+		
 	
 		//while(distance.getDistance()>50)
 		//	r.suitLigne(lumiere, distance);
 
-			
+		System.exit(0);
 	
 	
 	}

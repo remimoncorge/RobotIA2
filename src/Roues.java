@@ -40,16 +40,17 @@ public class Roues implements MoveListener{
 	}
 	
 	
-	public void avance() {// CapteurLumiere lumiere) 
+	public void avance(CapteurDistance distance) {// CapteurLumiere lumiere) 
 		chassis.setAcceleration(100, 10);
 		chassis.setLinearSpeed(200);
-		chassis.travel(200);
+		while (distance.getDistance()>0.20)
+			chassis.travel(50);
 	}
 	
 	public void recule() {
 		chassis.setAcceleration(100, 10);
 		chassis.setLinearSpeed(200);
-		chassis.travel(-200);
+		chassis.travel(-50);
 		}		
 	
 	//peut-etre juste faire genre une m�thode qui fait tourner
@@ -63,11 +64,6 @@ public class Roues implements MoveListener{
 	//on verra plus tard pour la direction
 	public void demiTour() {
 		tourne(92);
-		
-	}
-	
-	public void retour() {
-		MoveListener listener;
 		
 	}
 	
